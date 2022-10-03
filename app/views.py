@@ -24,22 +24,24 @@ def post_detail(request,id):
 class PostListView(ListView):
     model = Maqola
     template_name = 'blog/basic.html'
-    context_object_name = "post_list"   
+    context_object_name = "post_list"
     paginate_by = 8
 
 
 class ProfileSearchView(ListView):
-    template_name = '/blog/search.html'
+    template_name = 'blog/search.html'
     model = Maqola
+    context_object_name = "post_list"
 
     def get_queryset(self):
-        name = self.kwargs.get('search')
-        print(name)
-        object_list = self.model.objects.all()
-        
+        name = self.request.GET.get('search')
+        # bu yerda GET requestdan kelgan qidiruv xabari olindi
+
         if name:
-            object_list = object_list.filter(nomi__icontains=name)
-        return object_list
+            return self.model.objects.filter(nomi__contains=name)
+        else:
+            return self.model.objects.all()
+
 
 class PostDetailView(DetailView):
     template_name = 'blog/post_detail.html'
@@ -50,7 +52,8 @@ class jurnal_haqida(ListView):
     model = Maqola
     template_name = 'blog/jurnal_haqida.html'
     context_object_name = 'jurnal_haqida'
-    
+
+
 class nizom(ListView):
     model = Maqola
     template_name = 'blog/nizom.html'
