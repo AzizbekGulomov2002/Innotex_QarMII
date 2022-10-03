@@ -2,10 +2,11 @@
 {% block title %}
 Asosiy sahifa | {{block.super}}
 {% endblock title %}
-
-
-
 {% block content %}
+
+
+
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -27,32 +28,52 @@ Asosiy sahifa | {{block.super}}
 										<header class="major">
 											<h2>Jurnallar</h2>
 										</header>
-										<div class="row sm-3">
-											{% for post in posts %}
-											<div class="col-3 col-6-medium col-12-small">
-												
-												<section style="height: 550px!important;" class="box">
-													<a href="/{{post.id}}" class="image featured"><img style="height: 200px!important;" src="{{ post.rasm.url }}" alt="" /></a>
-													<header>
-														<h4>{{ post.nomi }}</h4>
-													</header>
-													<p>{{ post.maqola_soni }}</p>
+										{% if post_list %}
+											<div class="row sm-3">
+												{% for post in post_list %}
+												<div class="col-3 col-6-medium col-12-small">
 													
-													<p>{{ post.sana }}</p>
+													<section style="height: 550px!important;" class="box">
+														<a href="/{{post.id}}" class="image featured"><img style="height: 200px!important;" src="{{ post.rasm.url }}" alt="" /></a>
+														<header>
+															<h4>{{ post.nomi }}</h4>
+														</header>
+														<p>{{ post.maqola_soni }}</p>
+														
+														<p>{{ post.sana }}</p>
+														
+														{% comment %} <p>Jurnal haqida batafsil</p> {% endcomment %}
+														<footer>
+															<ul class="actions">
+																<li><a href="/{{post.id}}" class="button alt">Batafsil</a></li>
+															</ul>
+														</footer>
+														<p style="font-size: 13px;text-align: left!important;" class="card-text"><i class="fa fa-eye"> {{post.kurishlar}}</i></p>
+														
+													</section>
 													
-													{% comment %} <p>Jurnal haqida batafsil</p> {% endcomment %}
-													<footer>
-														<ul class="actions">
-															<li><a href="/{{post.id}}" class="button alt">Batafsil</a></li>
-														</ul>
-													</footer>
-													<p style="font-size: 13px;text-align: left!important;" class="card-text"><i class="fa fa-eye"> {{post.kurishlar}}</i></p>
-													
-												</section>
-												
+												</div>
+												{% endfor %}
 											</div>
-											{% endfor %}
-										</div>
+											 {% if is_paginated %}
+										        <div class="pagination">
+										            <span class="page-links">
+										                {% if page_obj.has_previous %}
+										                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+										                {% endif %}
+										                <span class="page-current">
+										                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+										                </span>
+										                {% if page_obj.has_next %}
+										                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+										                {% endif %}
+										            </span>
+										        </div>
+										    {% endif %}
+											{% else %}
+											    <h3>My Post</h3>
+											    <p>No Posts found! :(</p>
+									    {% endif %}
 									</section>
 									
 							</div>

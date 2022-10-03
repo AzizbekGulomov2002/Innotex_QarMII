@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Maqola(models.Model):
     nomi = models.CharField(max_length=200, help_text='Maqola nomini kiriting.....')
     rasm = models.ImageField(upload_to='post_image')
@@ -10,10 +9,10 @@ class Maqola(models.Model):
     sana = models.DateTimeField(auto_now_add=True)
     kurishlar = models.IntegerField(default=1)
 
-    def __str__(self):
-        return self.nomi
-
-
     class Meta:
         verbose_name = 'Maqola'
         verbose_name_plural = 'Maqolalar'
+
+
+    def __str__(self):
+        return self.nomi

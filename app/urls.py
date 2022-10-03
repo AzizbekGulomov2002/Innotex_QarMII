@@ -1,14 +1,17 @@
-from django.urls import path, include
-from .views import *
+from django.urls import path
+from .views import PostListView, PostDetailView
 from django.conf import settings
 from django.conf.urls.static import static
+from app.views import *
 
-from app.views import post_detail
 urlpatterns = [
-    path('', main),
-    path('detail/<int:pk>/', post_detail.as_view(), name='post_detail'),
-
-
+    path('', PostListView.as_view(), name='home'),
+    path('search/', ProfileSearchView.as_view(),name="search"),
+    path('<int:pk>/', PostDetailView.as_view(), name='post_detail'),
+    path('jurnal_haqida', jurnal_haqida.as_view(), name='jurnal_haqida'),
+    path('nizom', nizom.as_view(), name='nizom'),
+    path('tahrir', tahrir.as_view(), name='tahrir'),
+    path('biz', biz.as_view(), name='biz'),
 ]
 
 if settings.DEBUG:

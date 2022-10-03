@@ -25,13 +25,13 @@ Post haqida batafsil | {{block.super}}
 										</header>
 										<div class="row">
 												<section class="box">
-													<img style="height: 70%;width:50%" src="{{object.rasm.url}}" class="card-img-top" alt="...">
+													<img style="height: 50%;width:50%" src="{{object.rasm.url}}" class="card-img-top" alt="...">
 													<div class="card-body">
 													<header>
-														<h3>{{ object.nomi }}</h3>
+														<h2>{{ object.nomi }}</h2>
 													</header>
-													<p>{{ object.maqola_soni }}</p>
-													<p>{{ object.batafsil }}</p>
+													<h4>{{ object.maqola_soni }}</h4>
+													<h6>{{ object.batafsil }}</h6>
 													<p>{{ object.sana }}</p>
 													<footer>
 														<ul class="actions">
@@ -43,9 +43,9 @@ Post haqida batafsil | {{block.super}}
 										</div>
 									</section>
 								</center>
-								{% endblock content %}
+								
 							</div>
-						
+							{% endblock content %}
 						</div>
 					</div>
 				</section>
